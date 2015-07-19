@@ -3,7 +3,7 @@
 # mount image file in new folder, unmount if mounted already
 # requires fuseiso and libnotify (for notify-send messages)
 # original credits for open-iso.sh script go to johnraff on crunchbang.org
-# open-fuse-iso is GPL
+# open-fuse-iso is GPL2
 shopt -s nocasematch
 [[ -f $1 ]] && [[ $1 =~ \.(iso|bin|mdf|img|nrg)$ ]] || { notify-send "Mount/Unmount" "$1 is not a supported file type"; exit 1 ;}
 shopt -u nocasematch
