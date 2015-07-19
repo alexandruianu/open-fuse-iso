@@ -1,0 +1,4 @@
+#!/bin/bash
+# open-fuse-iso to ofi
+ofi "$@"
+exit
