@@ -1,0 +1,20 @@
+#!/bin/bash
+# open-fuse-iso
+# mount image file in new folder, unmount if mounted already
+# requires fuseiso and libnotify (for notify-send messages)
+# original credits for open-iso.sh script go to johnraff on crunchbang.org
+# open-fuse-iso is GPL
+shopt -s nocasematch
+[[ -f $1 ]] && [[ $1 =~ \.(iso|bin|mdf|img|nrg)$ ]] || { notify-send "Mount/Unmount" "$1 is not a supported file type"; exit 1 ;}
+shopt -u nocasematch
+foldername=${1}.mount
+if grep "^fuseiso[[:space:]]$(readlink -f $foldername)" /etc/mtab >/dev/null
+then
+fusermount -u "$foldername" || { notify-send "Mount/Unmount" "failed to unmount $1"; exit 1;}
+notify-send "Mount/Unmount" "$1 has been unmounted"
+else
+[[ -d $foldername ]] && [[ $( ls -A $foldername ) ]] && { notify-send "Mount/Unmount" "$foldername is not empty" ; exit 1 ;}
+fuseiso -p "$1" "$foldername" || { notify-send "Mount/Unmount" "failed to mount $1"; exit 1;}
+notify-send "Mount/Unmount" "$1 has been mounted on $foldername"
+fi
+exit
