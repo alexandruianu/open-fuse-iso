@@ -1,0 +1,17 @@
+.\" Manpage for open-fuse-iso.
+.\" Contact alexandru.ianu@gmail.com to correct errors or typos.
+.TH man 8 "19 Jul 2015" "1.1" "open-fuse-iso man page"
+.SH NAME
+open-fuse-iso \- mount or unmount image files
+.SH SYNOPSIS
+ofit [USERNAME]
+.SH DESCRIPTION
+Open-fuse-iso is a script that calls fuseiso to mount image files in userspace. The command "ofit" is for CLI/terminal usage. The "ofi"/"open-fuse-iso" commands use notify-send for GUI feedback. Packaging may vary.
+.SH OPTIONS
+It does not take any options. However, you can supply a file name.
+.SH SEE ALSO
+fusermount(1)
+.SH BUGS
+Mounting the same file separately with fuseiso may cause issues when unmounting.
+.SH AUTHOR
+Alexandru Ianu (alexandru.ianu@gmail.com)
